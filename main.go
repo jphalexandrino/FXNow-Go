@@ -4,19 +4,21 @@ import (
 	"fmt"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
-	"fyne.io/fyne/v2/canvas"
+	"github.com/jphalexandrino/FXNow-Go/theme"
+	"github.com/jphalexandrino/FXNow-Go/ui"
 )
 
 func main() {
 	fmt.Println("Starting Fyne")
 
 	a := app.New()
-	w := a.NewWindow("My new title")
+	w := a.NewWindow("Fx Now - By: João Pedro Hack Alexandrino")
+
+	// SetTheme
+	a.Settings().SetTheme(&theme.CustomTheme{})
 
 	w.Resize(fyne.NewSize(800, 500)) // Resizing the window
-
-	img := canvas.NewImageFromFile("images/my-logo.png")
-	w.SetContent(img)
+	w.SetContent(ui.BuildMainLayout())
 
 	w.ShowAndRun()
 
