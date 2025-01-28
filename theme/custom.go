@@ -6,47 +6,49 @@ import (
 	"image/color"
 )
 
-// CustomTheme defines a custom theme
+// CustomTheme defines a custom theme for the application
 type CustomTheme struct{}
 
-// Implementing the fyne.Theme interface
-
+// Color overrides theme.Color to define custom colors
 func (c *CustomTheme) Color(name fyne.ThemeColorName, variant fyne.ThemeVariant) color.Color {
 	switch name {
 	case theme.ColorNameBackground:
-		return color.RGBA{R: 30, G: 30, B: 30, A: 255} // Dark background color
+		return color.RGBA{R: 34, G: 34, B: 34, A: 255} // Dark gray background
 	case theme.ColorNameButton:
-		return color.RGBA{R: 0, G: 100, B: 0, A: 255} // Green buttons
+		return color.RGBA{R: 39, G: 118, B: 245, A: 255} // Green button by default
 	case theme.ColorNameDisabledButton:
-		return color.RGBA{R: 50, G: 50, B: 50, A: 255} // Disabled button color
-	case theme.ColorNameInputBackground:
-		return color.RGBA{R: 50, G: 50, B: 50, A: 255} // Input field background
-	case theme.ColorNamePlaceHolder:
-		return color.RGBA{R: 150, G: 150, B: 150, A: 255} // Placeholder text
+		return color.RGBA{R: 60, G: 60, B: 60, A: 255} // Dark gray for disabled buttons
+	case theme.ColorNameDisabled:
+		return color.RGBA{R: 160, G: 160, B: 160, A: 255} // Gray for disabled text
+	case theme.ColorNameHover:
+		return color.RGBA{R: 83, G: 101, B: 209, A: 255} // Dark green for hover effect
 	default:
-		// Fallback for any unhandled color names
 		return theme.DefaultTheme().Color(name, variant)
 	}
 }
 
+// Font overrides theme.Font to provide custom fonts (if needed)
 func (c *CustomTheme) Font(style fyne.TextStyle) fyne.Resource {
-	// Return the default font (or provide custom fonts here)
 	return theme.DefaultTheme().Font(style)
 }
 
+// Icon overrides theme.Icon to provide custom icons
 func (c *CustomTheme) Icon(name fyne.ThemeIconName) fyne.Resource {
-	// Return default icons (or replace with custom icons here)
 	return theme.DefaultTheme().Icon(name)
 }
 
+// Size overrides theme.Size to define custom dimensions
 func (c *CustomTheme) Size(name fyne.ThemeSizeName) float32 {
 	switch name {
 	case theme.SizeNameText:
-		return 14 // Custom text size
+		return 16 // Custom text size
 	case theme.SizeNamePadding:
-		return 8 // Custom padding
+		return 20 // Custom padding size
+	case theme.SizeNameInputBorder:
+		return 100 // Custom button height
+	case theme.SizeNameSubHeadingText:
+		return 20 // Custom button width (optional)
 	default:
-		// Fallback for any unhandled size names
 		return theme.DefaultTheme().Size(name)
 	}
 }
