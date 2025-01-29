@@ -30,9 +30,12 @@ func main() {
 	a.SetIcon(icon)
 	w.SetIcon(icon)
 
+	// Set custom theme
 	a.Settings().SetTheme(&theme.CustomTheme{})
 	w.Resize(fyne.NewSize(800, 500))
-	w.SetContent(ui.BuildMainLayout())
+
+	// Pass the window to BuildMainLayout
+	w.SetContent(ui.BuildMainLayout(w)) // Corrigido: Passa 'w' como argumento
 
 	w.ShowAndRun()
 }
