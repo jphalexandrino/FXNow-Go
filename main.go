@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
+	"github.com/jphalexandrino/FXNow-Go/cmd"
 	"github.com/jphalexandrino/FXNow-Go/theme"
 	"github.com/jphalexandrino/FXNow-Go/ui"
+	"github.com/jphalexandrino/FXNow-Go/utils"
 	"os"
 )
 
@@ -34,8 +36,12 @@ func main() {
 	a.Settings().SetTheme(&theme.CustomTheme{})
 	w.Resize(fyne.NewSize(800, 500))
 
-	// Pass the window to BuildMainLayout
-	w.SetContent(ui.BuildMainLayout(w)) // Corrigido: Passa 'w' como argumento
+	utils.MainLayout = ui.BuildMainLayout
+	utils.StockExchangeScreen = cmd.BuildStockExchangeScreen
+	utils.CurrencyQuotesScreen = cmd.BuildCurrencyQuotesScreen
+	utils.CryptoQuotesScreen = cmd.BuildCryptoQuotesScreen
+
+	w.SetContent(utils.MainLayout(w))
 
 	w.ShowAndRun()
 }

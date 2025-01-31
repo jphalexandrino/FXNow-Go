@@ -6,6 +6,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/widget"
+	"github.com/jphalexandrino/FXNow-Go/cmd"
 	"net/url"
 )
 
@@ -23,13 +24,13 @@ func loadIconFromFile(path string) fyne.Resource {
 func BuildMainLayout(w fyne.Window) *fyne.Container {
 	// Section: Buttons with navigation
 	btnCoin := widget.NewButton("Currency quotes", func() {
-		w.SetContent(BuildCurrencyQuotesScreen(w)) // Navigate to the Currency Quotes screen
+		w.SetContent(cmd.BuildCurrencyQuotesScreen(w)) // Navigate to the Currency Quotes screen
 	})
 	btnCrypto := widget.NewButton("Cryptocurrency Quote", func() {
-		w.SetContent(BuildCryptoQuotesScreen(w)) // Navigate to the Cryptocurrency Quotes screen
+		w.SetContent(cmd.BuildCryptoQuotesScreen(w)) // Navigate to the Cryptocurrency Quotes screen
 	})
 	btnStock := widget.NewButton("Stock exchange", func() {
-		w.SetContent(BuildStockExchangeScreen(w)) // Navigate to the Stock Exchange screen
+		w.SetContent(cmd.BuildStockExchangeScreen(w)) // Navigate to the Stock Exchange screen
 	})
 
 	// Wrap buttons in fixed-size containers
@@ -87,36 +88,6 @@ func BuildMainLayout(w fyne.Window) *fyne.Container {
 	)
 
 	return mainContent
-}
-
-// BuildCurrencyQuotesScreen creates the Currency Quotes screen
-func BuildCurrencyQuotesScreen(w fyne.Window) *fyne.Container {
-	return container.NewVBox(
-		widget.NewLabel("Currency Quotes Screen"),
-		widget.NewButton("Back", func() {
-			w.SetContent(BuildMainLayout(w)) // Go back to the main layout
-		}),
-	)
-}
-
-// BuildCryptoQuotesScreen creates the Cryptocurrency Quotes screen
-func BuildCryptoQuotesScreen(w fyne.Window) *fyne.Container {
-	return container.NewVBox(
-		widget.NewLabel("Cryptocurrency Quotes Screen"),
-		widget.NewButton("Back", func() {
-			w.SetContent(BuildMainLayout(w)) // Go back to the main layout
-		}),
-	)
-}
-
-// BuildStockExchangeScreen creates the Stock Exchange screen
-func BuildStockExchangeScreen(w fyne.Window) *fyne.Container {
-	return container.NewVBox(
-		widget.NewLabel("Stock Exchange Screen"),
-		widget.NewButton("Back", func() {
-			w.SetContent(BuildMainLayout(w)) // Go back to the main layout
-		}),
-	)
 }
 
 // Utility function to open a URL
