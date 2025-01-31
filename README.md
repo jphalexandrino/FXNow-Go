@@ -32,7 +32,6 @@ FXNow-Go is an application designed to provide real-time exchange rates, cryptoc
    ```bash
    docker-compose up --build
    ```
-4. Access the application through `localhost:PORT`.
 
 ## Usage
 
